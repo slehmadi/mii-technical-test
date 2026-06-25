@@ -7,10 +7,33 @@ import {
     Divider
 } from "@mui/material";
 
-// Dummy data
-import orders from "../data/orders.json";
+import { useEffect, useState } from "react";
+import orderService from '../services/orderService';
 
 function OrderHistoryPage() {
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchOrders = async() => {
+            try {
+                const data = await  orderService.getOrders();
+
+                setOrders(data);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+    if (loading) {
+        return <Typography>Loading...</Typography>
+    }
+
     return(
         <>
             <Typography variant="h4" gutterBottom>
