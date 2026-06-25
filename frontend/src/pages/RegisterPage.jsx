@@ -11,6 +11,7 @@ import {
 
 import { useState } from 'react';
 import { useNavigate, Link as RouterLink, Router } from 'react-router-dom';
+import authService from '../services/authService';
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -21,6 +22,7 @@ function RegisterPage() {
         confirmPassword: ''
     });
 
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const handleChange = (e) => {
         setFormData({
@@ -50,11 +52,21 @@ function RegisterPage() {
             return;
         }
 
-        // Dummy success
-        console.log("Register success:", formData);
+        try {
+            setLoading(true);
 
-        // Replace with Axios later
-        navigate("/login");
+            await authService.register({
+                username: formData.username,
+                email: formData.email,
+                password: formData.password
+            });
+
+            navigate("/login");
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -113,8 +125,9 @@ function RegisterPage() {
                             type='submit'
                             variant='contained'
                             size='large'
+                            disabled={loading}
                         >
-                            register
+                            {loading ? "Registering..." : "Register"}
                         </Button>
                         <Typography align='center'>
                             Already have an Account?
