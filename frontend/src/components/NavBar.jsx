@@ -14,7 +14,7 @@ import { CartContext } from '../contexts/CartContext';
 
 function NavBar() {
     const { user, logout } = useContext(AuthContext)
-    const { cartItems } = useContext(CartContext)
+    const { totalItems } = useContext(CartContext)
 
     return (
         <AppBar position='static'>
@@ -28,7 +28,7 @@ function NavBar() {
                         Home
                     </Button>
                     <Button color='inherit' component={Link} to='/cart'>
-                        Cart ({cartItems.length})
+                        Cart ({totalItems})
                     </Button>
                     <Button color='inherit' component={Link} to='/profile'>
                         Profile
