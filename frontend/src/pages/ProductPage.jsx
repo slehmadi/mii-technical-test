@@ -8,14 +8,34 @@ import {
 } from '@mui/material'
 
 import { useParams } from 'react-router-dom';
-import products from '../data/products.json'
+import { useEffect, useState } from 'react';
+import productServices from '../services/productService';
 import QuantitySelector from '../components/QuantitySelector';
 
 function ProductPage() {
     const { id } = useParams();
-    const product = products.find(
-        (item) => item.id === Number(id)
-    )
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchProduct = async() => {
+            try {
+                const data = await productServices.getProductById(id);
+
+                setProduct(data);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProduct();
+    }, [id]);
+
+    if (loading) {
+        return <Typography>Loading...</Typography>
+    }
 
     if (!product) {
         <Typography variant='h5'>
