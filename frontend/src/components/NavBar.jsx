@@ -8,7 +8,12 @@ import {
 
 import { Link } from 'react-router-dom'
 
+import { useContext } from 'react';
+import { AuthContext } from '../contexts/AuthContext';
+
 function NavBar() {
+    const { user, logout } = useContext(AuthContext)
+
     return (
         <AppBar position='static'>
             <Toolbar>
@@ -26,9 +31,21 @@ function NavBar() {
                     <Button color='inherit' component={Link} to='/profile'>
                         Profile
                     </Button>
-                    <Button color='inherit' component={Link} to='/login'>
-                        Login
-                    </Button>
+                    {
+                        user ? (
+                            <Button color='inherit' onClick={logout}>
+                                Logout
+                            </Button>
+                        ) : (
+                            <Button 
+                                color='inherit'
+                                component={Link}
+                                to='/login'
+                            >
+                                Login
+                            </Button>
+                        )
+                    }
                 </Box>
             </Toolbar>
         </AppBar>

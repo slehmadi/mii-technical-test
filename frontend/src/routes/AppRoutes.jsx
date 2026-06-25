@@ -11,6 +11,8 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
+import ProtectedRoute from './ProtectedRoute';
+
 function AppRoutes() {
     return (
         <BrowserRouter>
@@ -20,7 +22,11 @@ function AppRoutes() {
                     <Route path='/products/:id' element={<ProductPage />} />
                     <Route path='/store/:id' element={<StorePage />} />
                     <Route path='/cart' element={<CartPage />} />
-                    <Route path='/profile' element={<ProfilePage />} />
+                    <Route path='/profile' element={
+                        <ProtectedRoute>
+                            <ProfilePage />
+                        </ProtectedRoute>
+                    } />
                     <Route path='/login' element={<LoginPage />} />
                     <Route path='/register' element={<RegisterPage />} />
                     <Route path='*' element={<NotFoundPage />} />
