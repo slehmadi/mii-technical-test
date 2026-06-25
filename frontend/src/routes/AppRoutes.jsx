@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage';
 import ProductPage from '../pages/ProductPage';
 import StorePage from "../pages/StorePage";
 import CartPage from "../pages/CartPage";
+import CheckoutPage from '../pages/CheckoutPage';
 import ProfilePage from "../pages/ProfilePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
@@ -22,6 +23,11 @@ function AppRoutes() {
                     <Route path='/products/:id' element={<ProductPage />} />
                     <Route path='/store/:id' element={<StorePage />} />
                     <Route path='/cart' element={<CartPage />} />
+                    <Route path='/checkout' element={
+                        <ProtectedRoute>
+                            <CheckoutPage />
+                        </ProtectedRoute>
+                    } />
                     <Route path='/profile' element={
                         <ProtectedRoute>
                             <ProfilePage />
