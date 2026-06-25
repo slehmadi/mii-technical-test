@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Laptop Gaming",
+        "description": "RTX 5070",
+        "price": 15000000,
+        "image_url": "https://placehold.co/300x220",
+        "category": "Laptop",
+        "seller": {
+            "id": 1,
+            "store_name": "Metro Store"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Keyboard Gaming",
+        "description": "Mechanical Keyboard",
+        "price": 700000,
+        "image_url": "https://placehold.co/300x220",
+        "category": "Keyboard",
+        "seller": {
+            "id": 1,
+            "store_name": "Metro Store"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Mouse Gaming",
+        "description": "Wireless Mouse",
+        "price": 500000,
+        "image_url": "https://placehold.co/300x220",
+        "category": "Mouse",
+        "seller": {
+            "id": 1,
+            "store_name": "Metro Store"
+        }
+    }
+]
