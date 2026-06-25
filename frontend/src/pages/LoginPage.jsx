@@ -9,12 +9,16 @@ import {
 } from '@mui/material';
 
 import { useState, useContext } from 'react';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useNavigate, useLocation, Link as RouterLink } from 'react-router-dom';
 
 import { AuthContext } from '../contexts/AuthContext';
 
 function LoginPage() {
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const { login } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -29,7 +33,7 @@ function LoginPage() {
             username: username
         });
 
-        navigate('/');
+        navigate(from, { replace: true });
     };
 
     return (
