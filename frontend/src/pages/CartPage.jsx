@@ -8,6 +8,7 @@ import {
 
 import { use, useContext } from 'react';
 import { CartContext } from '../contexts/CartContext';
+import QuantitySelector from '../components/QuantitySelector';
 
 function CartPage() {
     const {
@@ -33,12 +34,6 @@ function CartPage() {
                         <CardContent>
                             <Typography variant='h6'>{item.name}</Typography>
                             <Typography>
-                                Quantity:
-                                {" "}
-                                {item.quantity}
-                            </Typography>
-
-                            <Typography>
                                 Price:
                                 {" "}
                                 Rp
@@ -46,12 +41,29 @@ function CartPage() {
                                 {item.price.toLocaleString()}
                             </Typography>
 
-                            <Button
-                                color='error'
-                                onClick={() => removeFromCart(item.id)}
+                            <Typography>
+                                Subtotal:
+                                {" "}
+                                Rp
+                                {" "}
+                                {
+                                    (item.price * item.quantity).toLocaleString()
+                                }
+                            </Typography>
+                            
+                            <Stack
+                                direction='row'
+                                spacing={2}
+                                sx={{ mt:2 }}
                             >
-                                Remove
-                            </Button>
+                                <QuantitySelector product={item} />
+                                <Button
+                                    color='error'
+                                    onClick={() => removeFromCart(item.id)}
+                                >
+                                    Remove
+                                </Button>
+                            </Stack>
                         </CardContent>
                     </Card>
                 ))}
