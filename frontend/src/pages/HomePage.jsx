@@ -1,9 +1,22 @@
+import { useState, useEffect } from 'react';
 import { Grid, Typography } from '@mui/material';
 
-import ProductCard from '../components/ProductCard'
-import products from '../data/products.json'
+import ProductCard from '../components/ProductCard';
+import { getProducts } from '../services/productService';
 
 function HomePage() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async() => {
+            const data = await getProducts();
+
+            setProducts(data)
+        };
+
+        fetchProducts();
+    }, []);
+
     return (
         <>
             <Typography variant='h4' gutterBottom>
