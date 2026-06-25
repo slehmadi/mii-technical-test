@@ -11,8 +11,6 @@ import { Link } from 'react-router-dom';
 import QuantitySelector from './QuantitySelector';
 
 function ProductCard({ product }) {
-    const { addToCart } = useContext(CartContext);
-
     return(
         <Card>
             <CardMedia 
