@@ -30,14 +30,14 @@ export function CartProvider({ children }) {
 
             // Jika produk di cart
             if (existingItems) {
-                return prevItems.map((item) => {
+                return prevItems.map((item) => 
                     item.id === product.id
                     ? {
                         ...item,
                         quantity: item.quantity + 1
                     }
                     : item
-                });
+                );
             }
 
             // Produk baru
@@ -52,11 +52,11 @@ export function CartProvider({ children }) {
     };
 
     const removeFromCart = (productID) => {
-        setCartItems((prevItems) => {
+        setCartItems((prevItems) => 
             prevItems.filter(
                 (item) => item.id !== productID
-            );
-        });
+            )
+        );
     };
 
     const clearCart = () => {
