@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { cardActionAreaClasses, Grid, Typography } from '@mui/material';
 
 import ProductCard from '../components/ProductCard';
-import { getProducts } from '../services/productService';
+import productServices from '../services/productService';
 
 function HomePage() {
     const [products, setProducts] = useState([]);
@@ -11,7 +11,7 @@ function HomePage() {
     useEffect(() => {
         const fetchProducts = async() => {
             try {
-                const data = await getProducts();
+                const data = await productServices.getProducts();
 
                 setProducts(data);
             } catch (error) {
