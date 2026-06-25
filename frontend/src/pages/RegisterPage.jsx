@@ -40,6 +40,16 @@ function RegisterPage() {
             return;
         }
 
+        if (formData.password.length < 8) {
+            setError("Password must be at least 8 characters");
+            return;
+        }
+
+        if (!formData.email.includes('@')) {
+            setError("Invalid email address");
+            return;
+        }
+
         // Dummy success
         console.log("Register success:", formData);
 
