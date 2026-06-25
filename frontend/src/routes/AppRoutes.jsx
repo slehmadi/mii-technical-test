@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage';
 import ProductPage from '../pages/ProductPage';
 import CartPage from "../pages/CartPage";
 import CheckoutPage from '../pages/CheckoutPage';
+import OrderHistoryPage from '../pages/OrderHistoryPage';
 import ProfilePage from "../pages/ProfilePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
@@ -24,6 +25,11 @@ function AppRoutes() {
                     <Route path='/checkout' element={
                         <ProtectedRoute>
                             <CheckoutPage />
+                        </ProtectedRoute>
+                    } />
+                    <Route path='/orders' element={
+                        <ProtectedRoute>
+                            <OrderHistoryPage />
                         </ProtectedRoute>
                     } />
                     <Route path='/profile' element={
