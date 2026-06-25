@@ -1,21 +1,33 @@
 import { useState, useEffect } from 'react';
-import { Grid, Typography } from '@mui/material';
+import { cardActionAreaClasses, Grid, Typography } from '@mui/material';
 
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../services/productService';
 
 function HomePage() {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const fetchProducts = async() => {
-            const data = await getProducts();
+            try {
+                const data = await getProducts();
 
-            setProducts(data)
+                setProducts(data);
+            } catch (error) {
+                console.error(error);
+            } finally {
+                setLoading(false);
+            }
+            
         };
 
         fetchProducts();
     }, []);
+
+    if (loading) {
+        return <Typography>Loading...</Typography>
+    }
 
     return (
         <>
