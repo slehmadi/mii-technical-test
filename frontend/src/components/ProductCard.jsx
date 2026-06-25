@@ -8,8 +8,7 @@ import {
 } from '@mui/material';
 
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { CartContext } from '../contexts/CartContext';
+import QuantitySelector from './QuantitySelector';
 
 function ProductCard({ product }) {
     const { addToCart } = useContext(CartContext);
@@ -38,9 +37,7 @@ function ProductCard({ product }) {
                 <Button component={Link} to={`/products/${product.id}`} >
                     Detail
                 </Button>
-                <Button variant='contained' onClick={() => addToCart(product)}>
-                    Add to Cart
-                </Button>
+                <QuantitySelector product={product} />
             </CardActions>
         </Card>
     )
