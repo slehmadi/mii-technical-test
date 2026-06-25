@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1001,
+        "date": "2026-06-25",
+        "status": "Delivered",
+        "total_price": 15700000,
+        "items": [
+            {
+                "name": "Laptop Gaming",
+                "quantity": 1
+            },
+            {
+                "name": "Keyboard Gaming",
+                "quantity": 1
+            }
+        ]
+    },
+    {
+        "id": 1002,
+        "date": "2026-06-28",
+        "status": "Processing",
+        "total_price": 500000,
+        "items": [
+            {
+                "name": "Mouse Gaming",
+                "quantity": 1
+            }
+        ]
+    }
+]
