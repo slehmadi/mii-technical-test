@@ -1,17 +1,7 @@
-import { Container, Typography } from "@mui/material";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-  return (
-    <Container sx={{ mt: 5 }}>
-      <Typography variant="h3">
-        E-Commerce Observability App
-      </Typography>
-
-      <Typography variant="body1">
-        Frontend setup successful.
-      </Typography>
-    </Container>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
