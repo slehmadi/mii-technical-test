@@ -34,6 +34,17 @@ function NavBar() {
                         Profile
                     </Button>
                     {
+                        user && (
+                            <Button 
+                                color='inherit' 
+                                component={Link}
+                                to='/orders'
+                            >
+                                Orders
+                            </Button>
+                        )
+                    }
+                    {
                         user ? (
                             <Button color='inherit' onClick={logout}>
                                 Logout
