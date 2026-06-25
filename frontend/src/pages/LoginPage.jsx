@@ -1,7 +1,68 @@
-import { Typography } from '@mui/material'
+import { 
+    Container,
+    Paper,
+    Typography,
+    TextField,
+    Button,
+    Stack
+} from '@mui/material';
+
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../contexts/AuthContext';
 
 function LoginPage() {
-    return <Typography variant='h4'>Login Page</Typography>
+    const navigate = useNavigate();
+    const { login } = useContext(AuthContext);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // dummy
+
+        login({
+            id: 1,
+            username: username
+        });
+
+        navigate('/');
+    };
+
+    return (
+        <Container maxWidth='sm'>
+            <Paper sx={{ p:4, mt: 8}}>
+                <Typography variant='h4' gutterBottom>Login</Typography>
+
+                <form onSubmit={handleSubmit}>
+                    <Stack spacing={2}>
+                        <TextField 
+                            label='username'
+                            value={username}
+                            onChange={(e) => 
+                                setUsername(e.target.value)
+                            }
+                            required
+                        />
+
+                        <TextField 
+                            label='password'
+                            type='password'
+                            value={password}
+                            onChange={(e) => 
+                                setPassword(e.target.value)
+                            }
+                            required
+                        />
+
+                        <Button type='submit' variant='contained'>Login</Button>
+                    </Stack>
+                </form>
+            </Paper>
+        </Container>
+    )
 }
 
 export default LoginPage;
