@@ -13,6 +13,8 @@ import { useNavigate, useLocation, Link as RouterLink } from 'react-router-dom';
 
 import { AuthContext } from '../contexts/AuthContext';
 
+import authService from '../services/authService';
+
 function LoginPage() {
     const navigate = useNavigate();
 
@@ -22,18 +24,27 @@ function LoginPage() {
     const { login } = useContext(AuthContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // dummy
+        
+        try {
+            setLoading(true)
+            const userData = await authService.login({
+                username, password
+            })
+            
+            login(userData);
 
-        login({
-            id: 1,
-            username: username
-        });
-
-        navigate(from, { replace: true });
+            navigate(from, { replace: true });
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -62,7 +73,13 @@ function LoginPage() {
                             required
                         />
 
-                        <Button type='submit' variant='contained'>Login</Button>
+                        <Button 
+                            type='submit' 
+                            variant='contained'
+                            disabled={loading}
+                        >
+                            {loading ? "Logging in..." : "Login"}
+                        </Button>
                         <Typography align='center'>
                             Don't have an Account?
                             {" "}
