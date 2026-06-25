@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 
 import { useState } from 'react';
-import { useNavigate, Link as RouterLink, Router } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import authService from '../services/authService';
 
 function RegisterPage() {

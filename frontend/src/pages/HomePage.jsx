@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { cardActionAreaClasses, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 import ProductCard from '../components/ProductCard';
 import productServices from '../services/productService';

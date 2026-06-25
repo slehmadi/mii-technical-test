@@ -6,7 +6,7 @@ import {
     Stack
 } from '@mui/material'
 
-import { use, useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext';
 import QuantitySelector from '../components/QuantitySelector';
