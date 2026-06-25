@@ -7,6 +7,7 @@ import {
 } from '@mui/material'
 
 import { use, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext';
 import QuantitySelector from '../components/QuantitySelector';
 
@@ -76,6 +77,15 @@ function CartPage() {
                 {" "}
                 {totalPrice.toLocaleString()}
             </Typography>
+
+            <Button
+                component={Link}
+                to="/checkout"
+                variant='contained'
+                sx={{ mt: 2, mr: 2}}
+            >
+                Proceed to Chekcout
+            </Button>
 
             {cartItems.length > 0 && (
                 <Button
