@@ -4,11 +4,12 @@ import {
     Typography,
     TextField,
     Button,
-    Stack
+    Stack,
+    Link
 } from '@mui/material';
 
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 
 import { AuthContext } from '../contexts/AuthContext';
 
@@ -58,6 +59,13 @@ function LoginPage() {
                         />
 
                         <Button type='submit' variant='contained'>Login</Button>
+                        <Typography align='center'>
+                            Don't have an Account?
+                            {" "}
+                            <Link component={RouterLink} to='/register'>
+                                Register Here
+                            </Link>
+                        </Typography>
                     </Stack>
                 </form>
             </Paper>

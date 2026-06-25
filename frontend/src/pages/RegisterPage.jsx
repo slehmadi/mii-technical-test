@@ -5,11 +5,12 @@ import {
     TextField,
     Button,
     Stack,
-    Alert
+    Alert,
+    Link
 } from '@mui/material'
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink, Router } from 'react-router-dom';
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -105,6 +106,15 @@ function RegisterPage() {
                         >
                             register
                         </Button>
+                        <Typography align='center'>
+                            Already have an Account?
+
+                            {" "}
+
+                            <Link component={RouterLink} to="/login">
+                                login here
+                            </Link>
+                        </Typography>
                     </Stack>
                 </form>
             </Paper>
