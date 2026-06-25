@@ -5,11 +5,7 @@
         "description": "RTX 5070",
         "price": 15000000,
         "image_url": "https://placehold.co/300x220",
-        "category": "Laptop",
-        "seller": {
-            "id": 1,
-            "store_name": "Metro Store"
-        }
+        "category": "Laptop"
     },
     {
         "id": 2,
@@ -17,11 +13,7 @@
         "description": "Mechanical Keyboard",
         "price": 700000,
         "image_url": "https://placehold.co/300x220",
-        "category": "Keyboard",
-        "seller": {
-            "id": 1,
-            "store_name": "Metro Store"
-        }
+        "category": "Keyboard"
     },
     {
         "id": 3,
@@ -29,10 +21,6 @@
         "description": "Wireless Mouse",
         "price": 500000,
         "image_url": "https://placehold.co/300x220",
-        "category": "Mouse",
-        "seller": {
-            "id": 1,
-            "store_name": "Metro Store"
-        }
+        "category": "Mouse"
     }
 ]
