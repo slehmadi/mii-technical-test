@@ -31,7 +31,7 @@ function RegisterPage() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         setError('');
