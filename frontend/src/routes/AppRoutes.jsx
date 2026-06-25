@@ -4,7 +4,6 @@ import MainLayout from '../layouts/MainLayout';
 
 import HomePage from '../pages/HomePage';
 import ProductPage from '../pages/ProductPage';
-import StorePage from "../pages/StorePage";
 import CartPage from "../pages/CartPage";
 import CheckoutPage from '../pages/CheckoutPage';
 import ProfilePage from "../pages/ProfilePage";
@@ -21,7 +20,6 @@ function AppRoutes() {
                 <Route element={<MainLayout />}>
                     <Route path='/' element={<HomePage />} />
                     <Route path='/products/:id' element={<ProductPage />} />
-                    <Route path='/store/:id' element={<StorePage />} />
                     <Route path='/cart' element={<CartPage />} />
                     <Route path='/checkout' element={
                         <ProtectedRoute>

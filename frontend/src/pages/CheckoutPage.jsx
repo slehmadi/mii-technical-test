@@ -110,8 +110,8 @@ function CheckoutPage() {
                             />
 
                             <TextField
-                                label="Adress"
-                                name="adress"
+                                label="Address"
+                                name="address"
                                 value={formData.address}
                                 onChange={handleChange}
                                 multiline
