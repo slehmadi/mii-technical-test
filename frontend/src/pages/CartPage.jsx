@@ -74,7 +74,7 @@ function CartPage() {
                 >
                     Clear Cart
                 </Button>
-            )};
+            )}
         </>
     );
 }

@@ -10,9 +10,11 @@ import { Link } from 'react-router-dom'
 
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
+import { CartContext } from '../contexts/CartContext';
 
 function NavBar() {
     const { user, logout } = useContext(AuthContext)
+    const { cartItems } = useContext(CartContext)
 
     return (
         <AppBar position='static'>
@@ -26,7 +28,7 @@ function NavBar() {
                         Home
                     </Button>
                     <Button color='inherit' component={Link} to='/cart'>
-                        Cart
+                        Cart ({cartItems.length})
                     </Button>
                     <Button color='inherit' component={Link} to='/profile'>
                         Profile
