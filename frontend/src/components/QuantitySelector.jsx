@@ -28,7 +28,7 @@ function QuantitySelector({ product }) {
         <Stack
             direction='row'
             spacing={1}
-            alignItems='center'
+            sx={{ alignItems: "center"}}
         >
             <Button variant="outlined" onClick={() => decreaseItemQuantity(product.id)}>
                 -

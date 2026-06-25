@@ -64,14 +64,16 @@ export function CartProvider({ children }) {
             }
 
             if (existingItems.quantity > 1) {
-                return prevItems.map((item) =>
-                    item.id === productID
-                    ? {
-                        ...item,
-                        quantity: prevItems.quantity - 1
+                return prevItems.map((item) => {
+                    if (item.id === productID) {
+                        return {
+                            ...item,
+                            quantity: item.quantity - 1
+                        }
                     }
-                    : item
-                );
+
+                    return item;
+                });
             }
 
             return prevItems.filter(
