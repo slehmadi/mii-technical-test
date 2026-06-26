@@ -11,7 +11,7 @@ import {
 import { useState, useContext } from 'react';
 import { useNavigate, useLocation, Link as RouterLink } from 'react-router-dom';
 
-import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from '../contexts/AuthProvider';
 
 import authService from '../services/authService';
 

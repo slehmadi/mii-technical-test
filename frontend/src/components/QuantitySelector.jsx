@@ -5,7 +5,7 @@ import {
 } from "@mui/material";
 
 import { useContext } from "react";
-import { CartContext } from "../contexts/CartContext";
+import { CartContext } from "../providers/CartProvider";
 
 function QuantitySelector({ product }) {
     const {
