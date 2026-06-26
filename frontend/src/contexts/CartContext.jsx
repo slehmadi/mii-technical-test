@@ -1,18 +1,13 @@
-import { createContext, useEffect, useState } from "react";
-
-export const CartContext = createContext();
+import { useEffect, useState } from "react";
+import { CartContext } from "../services/createCartContext";
 
 export function CartProvider({ children }) {
-    const [cartItems, setCartItems] = useState([]);
-
     // Load cart dari localStorage saat aplikasi dibuka
-    useEffect(() => {
+    const [cartItems, setCartItems] = useState(() => {
         const savedCart = localStorage.getItem("cart");
 
-        if (savedCart) {
-            setCartItems(JSON.parse(savedCart));
-        }
-    }, []);
+        return savedCart ? JSON.parse(savedCart) : [];
+    })
 
     // Simpan cart ke localStorage setiap ada perubahan
     useEffect(() => {
