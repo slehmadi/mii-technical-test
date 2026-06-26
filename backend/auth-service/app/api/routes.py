@@ -1,11 +1,11 @@
-from fastapi import ApiRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.db.database import get_db
 from app.schemas.user import UserCreate, UserResponse, UserLogin, Token
 from app.services.auth_service import register_user, login_user
 
-router = ApiRouter(
+router = APIRouter(
     prefix="/auth",
     tags=["Authentication"]
 )
