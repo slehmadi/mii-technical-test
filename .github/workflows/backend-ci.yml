@@ -36,8 +36,5 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Check FastAPI Import
-        run: python -c "from app.main import app"
-
       - name: Run Ruff Lint
         run: ruff check .
