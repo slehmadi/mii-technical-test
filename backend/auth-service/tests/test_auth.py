@@ -1,6 +1,5 @@
-from tests.testconf import client
 
-def test_register_user():
+def test_register_user(client):
     response = client.post(
         "/auth/register",
         json={
@@ -15,7 +14,7 @@ def test_register_user():
     assert data["username"] == "pytest_user"
     assert data["email"] == "pytest@email.com"
 
-def test_login_user():
+def test_login_user(client):
     response = client.post(
         "/auth/login",
         json={
@@ -29,7 +28,7 @@ def test_login_user():
     assert "access_token" in data
     assert data["token_type"] == "bearer"
 
-def test_get_profile():
+def test_get_profile(client):
     login_response = client.post(
         "/auth/login",
         json={
