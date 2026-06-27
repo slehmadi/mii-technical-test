@@ -22,7 +22,7 @@ function LoginPage() {
     const from = location.state?.from?.pathname || "/";
 
     const { login } = useContext(AuthContext);
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -33,7 +33,7 @@ function LoginPage() {
         try {
             setLoading(true)
             const userData = await authService.login({
-                username, password
+                email, password
             })
             
             login(userData);
@@ -54,10 +54,11 @@ function LoginPage() {
                 <form onSubmit={handleSubmit}>
                     <Stack spacing={2}>
                         <TextField 
-                            label='username'
-                            value={username}
+                            label='Email'
+                            type='email'
+                            value={email}
                             onChange={(e) => 
-                                setUsername(e.target.value)
+                                setEmail(e.target.value)
                             }
                             required
                         />

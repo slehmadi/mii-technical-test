@@ -1,25 +1,37 @@
+import authAPI from "../api/authAPI";
+
 const authService = {
     login: async (credentials) => {
-        console.log(
-            "Login:",
+        const response = await authAPI.post(
+            '/auth/login',
             credentials
         );
 
-        return Promise.resolve({
-            id: 1,
-            username: credentials.username
-        });
+        localStorage.setItem(
+            "token",
+            response.data.access_token
+        );
+
+        const profileResponse = await authAPI.get(
+            '/auth/profile',
+            {
+                headers: {
+                    Authorization:
+                        `Bearer ${response.data.access_token}`
+                }
+            }
+        );
+
+        return profileResponse.data
     },
 
     register: async (userData) => {
-        console.log(
-            "Register:",
+        const response = await authAPI.post(
+            '/auth/register',
             userData
         );
 
-        return Promise.resolve({
-            success: true
-        });
+        return response.data
     }
 };
 
