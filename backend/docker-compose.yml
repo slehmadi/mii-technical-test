@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
     environment:
       - DB_HOST=auth-db
-      - DB_PORT=3307
+      - DB_PORT=3306
       - DB_USER=${AUTH_DB_USER}
       - DB_PASSWORD=${AUTH_DB_PASSWORD}
       - DB_NAME=${AUTH_DB_NAME}
@@ -64,7 +64,7 @@ services:
     restart: unless-stopped
     environment:
       - DB_HOST=product-db
-      - DB_PORT=3308
+      - DB_PORT=3306
       - DB_USER=${PRODUCT_DB_USER}
       - DB_PASSWORD=${PRODUCT_DB_PASSWORD}
       - DB_NAME=${PRODUCT_DB_NAME}
@@ -82,7 +82,7 @@ services:
     restart: unless-stopped
     environment:
       - DB_HOST=order-db
-      - DB_PORT=3309
+      - DB_PORT=3306
       - DB_USER=${ORDER_DB_USER}
       - DB_PASSWORD=${ORDER_DB_PASSWORD}
       - DB_NAME=${ORDER_DB_NAME}
