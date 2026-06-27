@@ -3,7 +3,7 @@ import os
 
 from fastapi.testclient import TestClient
 
-os.environ['TESTING'] = 1
+os.environ['TESTING'] = "1"
 
 from app.main import app
 from app.db.database import Base, get_db

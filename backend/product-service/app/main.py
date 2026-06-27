@@ -11,7 +11,7 @@ app = FastAPI(title="Auth Service")
 
 @app.on_event('startup')
 def startup():
-    if os.getenv('TESTING') != 1:
+    if os.getenv('TESTING') != "1":
         Base.metadata.create_all(bind=engine)
 
 app.add_middleware(
