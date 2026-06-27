@@ -6,9 +6,12 @@ from app.db.database import Base, engine
 
 app = FastAPI(title="Auth Service")
 
+import os
+
 @app.on_event('startup')
 def startup():
-    Base.metadata.create_all(bind=engine)
+    if os.getenv('TESTING') != 1:
+        Base.metadata.create_all(bind=engine)
 
 app.add_middleware(
     CORSMiddleware,

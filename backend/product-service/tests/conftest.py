@@ -2,6 +2,10 @@ import pytest
 
 from fastapi.testclient import TestClient
 
+import os
+
+os.environ['TESTING'] = 1
+
 from app.main import app
 from app.db.database import Base, get_db
 
