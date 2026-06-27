@@ -1,0 +1,53 @@
+name: product-image
+
+on:
+  push:
+    branches:
+      - main
+
+    paths:
+      - 'backend/product-service/**'
+      - '.github/workflows/product-image.yml'
+
+jobs:
+
+  build-and-push:
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/product-service
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and Push Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend/product-service
+          push: true
+
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/product-service:latest
+            ghcr.io/${{ github.repository_owner }}/product-service:${{ github.sha }}
+
+          labels: ${{ steps.meta.outputs.labels }}
