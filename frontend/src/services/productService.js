@@ -1,19 +1,19 @@
-import products from '../data/products.json'
+import productAPI from '../api/productAPI';
 
 const productServices = {
 
     // Get all products
-    getProducts: async() => {
-        return Promise.resolve(products)
+    getProducts: async () => {
+        const response = await productAPI.get("/products");
+
+        return response.data;
     },
 
     // Get product by ID
-    getProductById: async(id) => {
-        const product = products.find(
-            (item) => item.id === Number(id)
-        );
+    getProductById: async (id) => {
+        const response = await productAPI.get(`/products/${id}`);
 
-        return Promise.resolve(product)
+        return response.data;
     }
 }
 
