@@ -1,18 +1,18 @@
 from fastapi import FastAPI
-
-# Commented some imports to avoid testing issues, but they are necessary 
-# for the actual application to work properly.
-
-# from app.db.database import engine
-# from app.db.models import Base
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes import router
+from app.core.config import settings
 
 app = FastAPI(title="Auth Service")
 
-# @app.on_event("startup")
-# def startup():
-#     Base.metadata.create_all(bind=engine)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.BACKEND_CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 app.include_router(router)
 
