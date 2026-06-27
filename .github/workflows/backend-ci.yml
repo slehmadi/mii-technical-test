@@ -74,15 +74,15 @@ jobs:
       - name: Run Ruff Lint
         run: ruff check .
     
-      # - name: Run Pytest
-      #   env:
-      #       DB_HOST: localhost
-      #       DB_PORT: 3306
-      #       DB_USER: test
-      #       DB_PASSWORD: test
-      #       DB_NAME: test
+      - name: Run Pytest
+        env:
+            DB_HOST: localhost
+            DB_PORT: 3306
+            DB_USER: test
+            DB_PASSWORD: test
+            DB_NAME: test
 
-      #       SECRET_KEY: test_secret_key
-      #       ALGORITHM: HS256
-      #       ACCESS_TOKEN_EXPIRE_MINUTES: 30
-      #   run: pytest --maxfail=1 -v
+            SECRET_KEY: test_secret_key
+            ALGORITHM: HS256
+            ACCESS_TOKEN_EXPIRE_MINUTES: 30
+        run: pytest --maxfail=1 -v
