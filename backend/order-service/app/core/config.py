@@ -7,9 +7,7 @@ class Settings(BaseSettings):
     DB_PASSWORD: str
     DB_NAME: str
 
-    SECRET_KEY: str
-    ALGORITHM: str
-    ACCESS_TOKEN_EXPIRE_MINUTES: int
+    BACKEND_CORS_ORIGINS: list[str]
 
     class Config:
         env_file = ".env"
