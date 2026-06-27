@@ -15,6 +15,15 @@ def test_register_user(client):
     assert data["email"] == "pytest@email.com"
 
 def test_login_user(client):
+    client.post(
+        "/auth/register",
+        json={
+            "username": "pytest_user",
+            "email": "pytest@email.com",
+            "password": "password123"
+        }
+    )
+
     response = client.post(
         "/auth/login",
         json={
@@ -29,6 +38,15 @@ def test_login_user(client):
     assert data["token_type"] == "bearer"
 
 def test_get_profile(client):
+    client.post(
+        "/auth/register",
+        json={
+            "username": "pytest_user",
+            "email": "pytest@email.com",
+            "password": "password123"
+        }
+    )
+
     login_response = client.post(
         "/auth/login",
         json={
