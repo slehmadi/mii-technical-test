@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router
@@ -5,8 +7,6 @@ from app.core.config import settings
 from app.db.database import Base, engine
 
 app = FastAPI(title="Auth Service")
-
-import os
 
 @app.on_event('startup')
 def startup():
