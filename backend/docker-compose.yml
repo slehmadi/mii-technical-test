@@ -23,6 +23,18 @@ services:
     volumes:
       - product-db-data:/var/lib/mysql
 
+  order-db:
+    image: mysql:8.0
+    container_name: order-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${ORDER_DB_NAME}
+    ports:
+      - "3309:3306"
+    volumes:
+      - order-db-data:/var/lib/mysql
+
   auth-service:
     build:
       context: ./auth-service
@@ -63,6 +75,27 @@ services:
     depends_on:
       - product-db
 
+  order-service:
+    build:
+      context: ./order-service
+      dockerfile: Dockerfile
+    container_name: order-service
+    restart: unless-stopped
+    environment:
+      - DB_HOST=order-db
+      - DB_PORT=3309
+      - DB_USER=${ORDER_DB_USER}
+      - DB_PASSWORD=${ORDER_DB_PASSWORD}
+      - DB_NAME=${ORDER_DB_NAME}
+      - SECRET_KEY=${ORDER_SECRET_KEY}
+      - ALGORITHM=${ORDER_ALGORITHM}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES}
+    ports:
+      - "8002:8000"
+    depends_on:
+      - order-db
+
 volumes:
   auth-db-data:
   product-db-data:
+  order-db-data:
