@@ -1,8 +1,7 @@
 import pytest
+import os
 
 from fastapi.testclient import TestClient
-
-import os
 
 os.environ['TESTING'] = 1
 
