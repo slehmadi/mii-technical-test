@@ -38,3 +38,6 @@ jobs:
 
       - name: Run Ruff Lint
         run: ruff check .
+    
+      - name: Run Pytest
+        run: pytest --maxfail=1 -v
