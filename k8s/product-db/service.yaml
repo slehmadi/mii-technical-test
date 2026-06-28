@@ -9,5 +9,6 @@ spec:
   selector:
     app: product-db
   ports:
-    - port: 3306
+    - name: http
+      port: 3306
       targetPort: 3306
