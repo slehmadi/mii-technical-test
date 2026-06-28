@@ -37,7 +37,7 @@ services:
 
   auth-service:
     build:
-      context: ./auth-service
+      context: ./backend/auth-service
       dockerfile: Dockerfile
     container_name: auth-service
     restart: unless-stopped
@@ -58,7 +58,7 @@ services:
 
   product-service:
     build:
-      context: ./product-service
+      context: ./backend/product-service
       dockerfile: Dockerfile
     container_name: product-service
     restart: unless-stopped
@@ -76,7 +76,7 @@ services:
 
   order-service:
     build:
-      context: ./order-service
+      context: ./backend/order-service
       dockerfile: Dockerfile
     container_name: order-service
     restart: unless-stopped
@@ -93,6 +93,20 @@ services:
       - "8002:8000"
     depends_on:
       - order-db
+  
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - auth-service
+      - product-service
+      - order-service
+
 
 volumes:
   auth-db-data:
