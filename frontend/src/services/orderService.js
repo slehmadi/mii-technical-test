@@ -2,13 +2,13 @@ import orderAPI from '../api/orderAPI';
 
 const orderService = {
     getOrders: async (id) => {
-        const response = await orderAPI.get(`/orders/user/${id}`);
+        const response = await orderAPI.get(`/user/${id}`);
 
         return response.data;
     },
 
     createOrder: async (orderData) => {
-        const response = await orderAPI.post("/orders", orderData);
+        const response = await orderAPI.post("/", orderData);
 
         return response.data;
     }

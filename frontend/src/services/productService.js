@@ -4,14 +4,14 @@ const productServices = {
 
     // Get all products
     getProducts: async () => {
-        const response = await productAPI.get("/products");
+        const response = await productAPI.get("/");
 
         return response.data;
     },
 
     // Get product by ID
     getProductById: async (id) => {
-        const response = await productAPI.get(`/products/${id}`);
+        const response = await productAPI.get(`/${id}`);
 
         return response.data;
     }

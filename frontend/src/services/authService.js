@@ -3,7 +3,7 @@ import authAPI from "../api/authAPI";
 const authService = {
     login: async (credentials) => {
         const response = await authAPI.post(
-            '/auth/login',
+            '/login',
             credentials
         );
 
@@ -13,7 +13,7 @@ const authService = {
         );
 
         const profileResponse = await authAPI.get(
-            '/auth/profile',
+            '/profile',
             {
                 headers: {
                     Authorization:
@@ -27,7 +27,7 @@ const authService = {
 
     register: async (userData) => {
         const response = await authAPI.post(
-            '/auth/register',
+            '/register',
             userData
         );
 
