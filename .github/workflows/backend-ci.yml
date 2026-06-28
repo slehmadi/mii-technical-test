@@ -117,5 +117,8 @@ jobs:
             DB_PASSWORD: test
             DB_NAME: test
 
+            SECRET_KEY: test_secret_key
+            ALGORITHM: HS256
+
             BACKEND_CORS_ORIGINS: '["http://localhost:3000", "http://localhost:5173"]'
         run: pytest --maxfail=1 -v

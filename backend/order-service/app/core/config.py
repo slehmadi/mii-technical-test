@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     DB_PASSWORD: str
     DB_NAME: str
 
+    SECRET_KEY: str
+    ALGORITHM: str
     BACKEND_CORS_ORIGINS: list[str]
 
     class Config:
