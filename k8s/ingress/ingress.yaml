@@ -10,7 +10,7 @@ spec:
     - host: shop.local
       http:
         paths:
-          - path: /api/auth
+          - path: /auth
             pathType: Prefix
             backend:
               service:
@@ -18,7 +18,7 @@ spec:
                 port:
                   number: 8000
           
-          - path: /api/orders
+          - path: /orders
             pathType: Prefix
             backend:
               service:
@@ -26,7 +26,7 @@ spec:
                 port:
                   number: 8000
 
-          - path: /api/products
+          - path: /products
             pathType: Prefix
             backend:
               service:
