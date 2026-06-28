@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: auth-db
+  namespace: ecommerce
+
+spec:
+  serviceName: auth-db
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-db
+  
+  template:
+    metadata:
+      labels:
+        app: auth-db
+
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: auth-db-secret
+                  key: MYSQL_DATABASE
+
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: auth-db-secret
+                  key: MYSQL_ROOT_PASSWORD
+          
+          volumeMounts:
+            - name: auth-db-storage
+              mountPath: /var/lb/mysql
+  
+  volumeClaimTemplates:
+    - metadata:
+        name: auth-db-storage
+      
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        
+        resources:
+          requests:
+            storage: 2Gi
