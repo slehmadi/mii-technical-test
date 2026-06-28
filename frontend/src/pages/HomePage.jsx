@@ -13,10 +13,6 @@ function HomePage() {
             try {
                 const data = await productServices.getProducts();
 
-                console.log("Products response:", data);
-                console.log("Type: ", typeof(data));
-                console.log("Is Array", Array.isArray(data));
-
                 setProducts(
                     Array.isArray(data)
                     ? data
