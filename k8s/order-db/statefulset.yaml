@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: auth-order
+  name: order-db
   namespace: ecommerce
 
 spec:
-  serviceName: auth-order
+  serviceName: order-db
   replicas: 1
   selector:
     matchLabels:
-      app: auth-order
+      app: order-db
   
   template:
     metadata:
       labels:
-        app: auth-order
+        app: order-db
 
     spec:
       containers:
@@ -26,22 +26,22 @@ spec:
             - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: auth-order-secret
+                  name: order-db-secret
                   key: MYSQL_DATABASE
 
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: auth-order-secret
+                  name: order-db-secret
                   key: MYSQL_ROOT_PASSWORD
           
           volumeMounts:
-            - name: auth-order-storage
+            - name: order-db-storage
               mountPath: /var/lb/mysql
   
   volumeClaimTemplates:
     - metadata:
-        name: auth-order-storage
+        name: order-db-storage
       
       spec:
         accessModes:

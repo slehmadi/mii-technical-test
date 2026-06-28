@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-order
+  name: order-db
   namespace: ecommerce
 
 spec:
   clusterIP: None
   selector:
-    app: auth-order
+    app: order-db
   ports:
     - port: 3306
       targetPort: 3306
