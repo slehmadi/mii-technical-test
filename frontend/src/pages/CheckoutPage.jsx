@@ -13,6 +13,9 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CartContext } from "../contexts/CartContext";
+import { AuthContext } from "../contexts/AuthContext";
+
+import orderService from "../services/orderService";
 
 function CheckoutPage() {
     const navigate = useNavigate();
@@ -22,6 +25,8 @@ function CheckoutPage() {
         totalPrice,
         clearCart
     } = useContext(CartContext);
+
+    const { user } = useContext(AuthContext);
 
     const [success, setSuccess] = useState(false);
     const [formData, setFormData] = useState({
@@ -40,23 +45,34 @@ function CheckoutPage() {
         });
     };
 
-    const handleCheckout = (e) => {
+    const handleCheckout = async (e) => {
         e.preventDefault();
 
-        // Replace with Axios later
-        console.log({
-            customer: formData,
-            items: cartItems,
-            totalPrice
-        });
+        try {
+            const orderData = {
+                user_id: user.id,
+                items: cartItems.map(item => ({
+                    product_id: item.id,
+                    product_name: item.name,
+                    quantity: item.quantity,
+                    price: item.price
+                }))
+            };
 
-        clearCart();
+            await orderService.createOrder(orderData);
 
-        setSuccess(true);
+            clearCart();
 
-        setTimeout(() => {
-            navigate('/');
-        }, 2000);
+            setSuccess(true);
+
+        } catch (error) {
+            console.error();
+        } finally {
+            setTimeout(() => {
+                navigate('/');
+            }, 2000);        
+        }
+
     };
 
     if (cartItems.length === 0 && !success) {

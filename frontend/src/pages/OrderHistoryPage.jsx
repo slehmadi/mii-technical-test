@@ -7,17 +7,20 @@ import {
     Divider
 } from "@mui/material";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 import orderService from '../services/orderService';
 
 function OrderHistoryPage() {
+    const { user } = useContext(AuthContext);
+
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchOrders = async() => {
             try {
-                const data = await  orderService.getOrders();
+                const data = await orderService.getOrders(user.id);
 
                 setOrders(data);
             } catch (error) {
@@ -52,7 +55,7 @@ function OrderHistoryPage() {
                             <Typography>
                                 Date:
                                 {" "}
-                                {order.date}
+                                {order.created_at}
                             </Typography>
 
                             <Chip
@@ -71,7 +74,7 @@ function OrderHistoryPage() {
                                     <Typography key={index}>
                                         •
                                         {" "}
-                                        {item.name}
+                                        {item.product_name}
                                         {" "}
                                         x
                                         {" "}
