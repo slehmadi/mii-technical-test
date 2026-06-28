@@ -11,7 +11,7 @@ spec:
     matchLabels:
       app: auth-service
   
-  nameSpaceSelector:
+  namespaceSelector:
     matchNames:
       - ecommerce
   
