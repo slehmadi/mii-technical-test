@@ -5,6 +5,7 @@ metadata:
   namespace: ecommerce
   labels:
     release: monitoring
+    app: order-service
 
 spec:
   selector:
