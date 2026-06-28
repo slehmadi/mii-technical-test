@@ -21,7 +21,7 @@ class Order(Base):
     user_id = Column(Integer, nullable=False)
     status = Column(String(50), default="Pending")
     total_price = Column(Float, nullable=False)
-    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(UTC))
+    created_at = Column(DateTime(timezone=True), default=datetime.now(UTC))
     items = relationship("OrderItem", back_populates="order", cascade="all, delete")
 
 
