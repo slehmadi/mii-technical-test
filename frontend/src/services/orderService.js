@@ -1,8 +1,5 @@
 import orderAPI from '../api/orderAPI';
 
-import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthContext';
-
 const orderService = {
     getOrders: async (id) => {
         const response = await orderAPI.get(`/orders/user/${id}`);

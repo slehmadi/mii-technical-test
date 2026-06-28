@@ -66,7 +66,7 @@ function CheckoutPage() {
             setSuccess(true);
 
         } catch (error) {
-            console.error();
+            console.log(error);
         } finally {
             setTimeout(() => {
                 navigate('/');
