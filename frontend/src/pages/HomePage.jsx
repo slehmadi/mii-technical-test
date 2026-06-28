@@ -13,7 +13,15 @@ function HomePage() {
             try {
                 const data = await productServices.getProducts();
 
-                setProducts(data);
+                console.log("Products response:", data);
+                console.log("Type: ", typeof(data));
+                console.log("Is Array", Array.isArray(data));
+
+                setProducts(
+                    Array.isArray(data)
+                    ? data
+                    : []
+                );
             } catch (error) {
                 console.error(error);
             } finally {
@@ -37,7 +45,7 @@ function HomePage() {
 
             <Grid container spacing={3}>
 
-                {products.map((product) => (
+                {(Array.isArray(products) ? products : []).map((product) => (
                     <Grid 
                         size={{ xs: 12, sm: 6, md: 4 }}
                         key={product.id}
