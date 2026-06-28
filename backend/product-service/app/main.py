@@ -2,6 +2,7 @@ import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from prometheus_fastapi_instrumentator import Instrumentator
 
 from app.api.routes import router
 from app.core.config import settings
@@ -27,3 +28,5 @@ app.include_router(router)
 @app.get("/health")
 def health():
     return {"status": "healthy"}
+
+Instrumentator().instrument(app).expose(app)
