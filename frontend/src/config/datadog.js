@@ -1,5 +1,9 @@
 import { datadogRum } from '@datadog/browser-rum';
 
+console.log("DD APP ID:", import.meta.env.VITE_DD_APP_ID);
+console.log("DD TOKEN:", import.meta.env.VITE_DD_CLIENT_TOKEN);
+console.log(import.meta.env);
+
 datadogRum.init({
     applicationId: import.meta.env.VITE_DD_APP_ID,
     clientToken: import.meta.env.VITE_DD_CLIENT_TOKEN,

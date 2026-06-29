@@ -46,6 +46,11 @@ jobs:
           context: ./frontend
           push: true
 
+          build-args: |
+            VITE_DD_APP_ID=${{ secrets.VITE_DD_APP_ID }}
+            VITE_DD_CLIENT_TOKEN=${{ secrets.VITE_DD_CLIENT_TOKEN }}
+            VITE_DD_SITE=${{ secrets.VITE_DD_SITE}}
+
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
