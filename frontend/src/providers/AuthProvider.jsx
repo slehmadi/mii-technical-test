@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
+import { datadogRum } from '@datadog/browser-rum';
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(() => {
@@ -15,6 +16,8 @@ export function AuthProvider({ children }) {
             "user",
             JSON.stringify(userData)
         );
+
+        datadogRum.setUser(userData)
     };
 
     const logout = () => {
@@ -22,6 +25,7 @@ export function AuthProvider({ children }) {
 
         localStorage.removeItem("user");
         localStorage.removeItem("token");
+        datadogRum.clearUser()
     }
 
     return (

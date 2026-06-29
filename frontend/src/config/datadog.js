@@ -17,3 +17,5 @@ datadogRum.init({
     // allowedTracingUrls: '<BACKEND_URL>',		// Enable distributed tracing
     defaultPrivacyLevel: 'mask-user-input',	// 'mask-user-input' | 'allow' | 'mask'
 });
+
+export default datadogRum;
