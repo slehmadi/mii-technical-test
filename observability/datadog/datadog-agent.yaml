@@ -21,5 +21,3 @@ spec:
       containerCollectAll: true
     liveProcessCollection:
       enabled: true
-    otelCollector:
-      enabled: true
