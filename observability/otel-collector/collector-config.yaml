@@ -19,10 +19,17 @@ data:
     exporters:
       debug:
         verbosity: detailed
+      
+      otlp_grpc/tempo:
+        endpoint: tempo.monitoring.svc.cluster.local:4317
+        tls:
+          insecure: true
     
     service:
       pipelines:
         traces:
           receivers: [otlp]
           processors: [batch]
-          exporters: [debug]
+          exporters:
+            - debug
+            - otlp_grpc/tempo
