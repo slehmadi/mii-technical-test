@@ -55,6 +55,11 @@ data:
         api:
           site: ap1.datadoghq.com
           key: ${env:DD_API_KEY}
+      
+      otlp_http/dynatrace:
+        endpoint: ${env:DT_ENDPOINT}
+        headers:
+          Authorization: Api-Token ${env:DT_OTLP_API_KEY}
     
     service:
       extensions:
@@ -73,3 +78,24 @@ data:
             - debug
             - otlp_grpc/tempo
             - datadog
+            - otlp_http/dynatrace
+        
+        metrics:
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
+            - batch
+            - resource
+          exporters:
+            - otlp_http/dynatrace
+        
+        logs:
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
+            - batch
+            - resource
+          exporters:
+            - otlp_http/dynatrace

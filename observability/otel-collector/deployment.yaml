@@ -36,8 +36,20 @@ spec:
             - name: DD_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: datadog-api-key
-                  key: api-key
+                  name: otel-collector-secret
+                  key: DD_API_KEY
+            
+            - name: DT_OTLP_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: otel-collector-secret
+                  key: DT_OTLP_API_KEY
+            
+            - name: DT_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: otel-collector-secret
+                  key: DT_ENDPOINT
           
       volumes:
       - name: collector-config
