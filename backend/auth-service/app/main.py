@@ -1,5 +1,4 @@
 import os
-from ddtrace import patch_all
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,8 +7,6 @@ from prometheus_fastapi_instrumentator import Instrumentator
 from app.api.routes import router
 from app.core.config import settings
 from app.db.database import Base, engine
-
-patch_all()
 
 app = FastAPI(title="Auth Service")
 
