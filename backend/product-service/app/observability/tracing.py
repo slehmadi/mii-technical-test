@@ -6,6 +6,7 @@ from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import (
     BatchSpanProcessor,
     ConsoleSpanExporter,
+    OTLPSpanExporter
 )
 
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
@@ -22,7 +23,10 @@ def setup_tracing(app, engine, service_name: str):
     provider = TracerProvider(resource=resource)
 
     processor = BatchSpanProcessor(
-        ConsoleSpanExporter()
+        OTLPSpanExporter(
+            endpoint="otel-collector.monitoring.svc.cluster.local:4317",
+            insecure=True
+        )
     )
 
     provider.add_span_processor(processor)
