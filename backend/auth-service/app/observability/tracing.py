@@ -5,7 +5,6 @@ from opentelemetry.sdk.trace import TracerProvider
 
 from opentelemetry.sdk.trace.export import (
     BatchSpanProcessor,
-    ConsoleSpanExporter,
     OTLPSpanExporter
 )
 
