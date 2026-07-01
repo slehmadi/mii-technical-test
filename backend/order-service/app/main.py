@@ -7,8 +7,11 @@ from prometheus_fastapi_instrumentator import Instrumentator
 from app.api.routes import router
 from app.core.config import settings
 from app.db.database import Base, engine
+from app.observability.tracing import setup_tracing
 
 app = FastAPI(title="Auth Service")
+
+setup_tracing(app=app, engine=engine, service_name='order-service')
 
 @app.on_event('startup')
 def startup():
