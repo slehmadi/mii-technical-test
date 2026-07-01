@@ -50,11 +50,6 @@ data:
         endpoint: tempo.monitoring.svc.cluster.local:4317
         tls:
           insecure: true
-      
-      datadog:
-        api:
-          site: ap1.datadoghq.com
-          key: ${env:DD_API_KEY}
     
     service:
       extensions:
@@ -72,4 +67,3 @@ data:
           exporters:
             - debug
             - otlp_grpc/tempo
-            - datadog

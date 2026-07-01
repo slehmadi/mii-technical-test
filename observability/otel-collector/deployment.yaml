@@ -32,6 +32,13 @@ spec:
           - name: collector-config
             mountPath: /etc/otel
           
+          env:
+            - name: DD_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: datadog-api-key
+                  key: api-key
+          
       volumes:
       - name: collector-config
         configMap:
