@@ -14,8 +14,34 @@ data:
             endpoint: 0.0.0.0:4318
     
     processors:
+      memory_limiter:
+        check_interval: 1s
+        limit_percentage: 75
+        spike_limit_percentage: 20
+
       batch:
+        timeout: 5s
+        send_batch_size: 512
+        send_batch_max_size: 1024
+
+      resource:
+        attributes:
+          - key: deployment.environment
+            value: development
+            action: upsert
+          
+          - key: k8s.cluster.name
+            value: minikube
+            action: upsert
+          
+          - key: project
+            value: ecommerce-demo
+            action: upsert
     
+    extensions:
+      health_check:
+      zpages:
+
     exporters:
       debug:
         verbosity: detailed
@@ -26,10 +52,18 @@ data:
           insecure: true
     
     service:
+      extensions:
+        - health_check
+        - zpages
+        
       pipelines:
         traces:
-          receivers: [otlp]
-          processors: [batch]
+          receivers:
+            - otlp
+          processors:
+            - memory_limiter
+            - batch
+            - resource
           exporters:
             - debug
             - otlp_grpc/tempo
